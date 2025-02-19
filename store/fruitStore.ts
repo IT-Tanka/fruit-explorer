@@ -26,22 +26,6 @@ export const useFruitStore = defineStore("fruit", {
     }),
 
     actions: {
-        // async fetchFruits(route: string = "index") {
-        //     const path =
-        //         route === "index" || route === "favorites"
-        //             ? API_ENDPOINTS.ALL_FRUITS
-        //             : API_ENDPOINTS.FAMILY(route);
-
-        //     try {
-        //         const response = await fetch(path);
-        //         if (!response.ok) throw new Error("Ошибка загрузки данных");
-        //         this.fruits = await response.json();
-        //         if (route === "favorites") this.filterByFavorites();
-        //         this.initializeFilters();
-        //     } catch (error) {
-        //         console.error("Ошибка загрузки фруктов:", error);
-        //     }
-        // },
         async fetchFruits(route: string = "index") {
             const path =
                 route === "index" || route === "favorites"

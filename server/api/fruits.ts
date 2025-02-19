@@ -1,6 +1,15 @@
 export default defineEventHandler(async (event) => {
     try {
-        const response = await fetch("https://www.fruityvice.com/api/fruit/all", {
+        const { family } = getQuery(event);
+        let url = "https://www.fruityvice.com/api/fruit/all";
+
+        if (family) {
+            url = `https://www.fruityvice.com/api/fruit/family/${family}`;
+        }
+
+        console.log("Запрос к API:", url);
+
+        const response = await fetch(url, {
             headers: {
                 "Accept": "application/json",
             },
@@ -10,8 +19,7 @@ export default defineEventHandler(async (event) => {
             throw new Error("Ошибка загрузки фруктов");
         }
 
-        const data = await response.json();
-        return data;
+        return await response.json();
     } catch (error) {
         console.error("Ошибка на сервере:", error);
         return { error: "Ошибка загрузки данных" };
